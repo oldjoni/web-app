@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clearfield Advisory — Regulatory Compliance for Life Insurance Professionals</title>
+  <meta name="description" content="Clearfield Advisory provides regulatory compliance consulting for independent life insurance agents and startup MGAs. Licensing, audits, compliant marketing materials, and more.">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: { 950:'#080808', 900:'#0d0d0d', 800:'#141414', 700:'#1a1a1a', 600:'#222', 500:'#2e2e2e', 400:'#3a3a3a' },
+            gold: { 300:'#f0d080', 400:'#e8c56d', 500:'#d4a843', 600:'#c9a84c', 700:'#a07830' }
+          },
+          fontFamily: {
+            sans: ['Inter','system-ui','sans-serif'],
+            serif: ['"Playfair Display"','Georgia','serif']
+          },
+          letterSpacing: { widest2: '0.25em' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+  <style>
+    [x-cloak]{display:none!important}
+    html{background:#0d0d0d}
+
+    ::selection{background:rgba(212,168,67,.25);color:#f5f0e8}
+
+    /* Scrollbar */
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:#0d0d0d}
+    ::-webkit-scrollbar-thumb{background:#d4a843;border-radius:2px}
+
+    .gold-text{
+      background:linear-gradient(135deg,#f0d080 0%,#d4a843 50%,#c9a84c 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .gold-border{border-color:rgba(212,168,67,.3)}
+    .gold-line{
+      position:relative;
+    }
+    .gold-line::after{
+      content:'';position:absolute;bottom:-1px;left:0;width:100%;height:1px;
+      background:linear-gradient(90deg,transparent,#d4a843,transparent);
+    }
+
+    .glass{
+      background:rgba(255,255,255,.03);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.07);
+    }
+    .glass-gold{
+      background:rgba(212,168,67,.04);
+      border:1px solid rgba(212,168,67,.18);
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg,#d4a843,#c9a84c);
+      color:#0d0d0d;
+      font-weight:600;
+      transition:all .3s ease;
+      box-shadow:0 4px 20px rgba(212,168,67,.25);
+    }
+    .btn-gold:hover{
+      box-shadow:0 8px 32px rgba(212,168,67,.45);
+      transform:translateY(-2px);
+    }
+    .btn-outline{
+      border:1px solid rgba(212,168,67,.45);
+      color:#d4a843;
+      transition:all .3s ease;
+    }
+    .btn-outline:hover{
+      background:rgba(212,168,67,.08);
+      border-color:rgba(212,168,67,.7);
+      transform:translateY(-2px);
+    }
+
+    /* Nav link underline animation */
+    .nav-link{position:relative}
+    .nav-link::after{
+      content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;
+      background:#d4a843;transition:width .3s ease;
+    }
+    .nav-link:hover::after{width:100%}
+
+    /* Service card */
+    .service-card{
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      transition:all .4s ease;
+    }
+    .service-card:hover{
+      background:rgba(212,168,67,.05);
+      border-color:rgba(212,168,67,.25);
+      transform:translateY(-4px);
+    }
+    .service-card:hover .service-icon-wrap{
+      background:rgba(212,168,67,.15);
+      border-color:rgba(212,168,67,.4);
+    }
+
+    /* Divider */
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(212,168,67,.2),transparent);
+    }
+
+    /* Hero gradient */
+    .hero-bg{
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212,168,67,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(212,168,67,.04) 0%, transparent 60%),
+        #0d0d0d;
+    }
+
+    /* Noise texture overlay */
+    .noise::before{
+      content:'';position:absolute;inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity:.4;pointer-events:none;z-index:0;
+    }
+
+    /* Count-up */
+    .stat-num{font-variant-numeric:tabular-nums}
+
+    /* Form */
+    .form-input{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      color:#f5f0e8;
+      transition:border-color .3s ease, box-shadow .3s ease;
+    }
+    .form-input:focus{
+      outline:none;
+      border-color:rgba(212,168,67,.5);
+      box-shadow:0 0 0 3px rgba(212,168,67,.08);
+    }
+    .form-input::placeholder{color:rgba(255,255,255,.3)}
+
+    /* Step connector */
+    .step-line{
+      background:linear-gradient(180deg,rgba(212,168,67,.5),rgba(212,168,67,.1));
+    }
+
+    /* Marquee */
+    .marquee-track{animation:marquee 28s linear infinite}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Mobile menu */
+    @media(max-width:767px){
+      .hero-title{font-size:clamp(2.2rem,8vw,3.5rem)}
+    }
+  </style>
+</head>
+
+<body class="bg-charcoal-900 text-white font-sans antialiased"
+      x-data="{ navOpen: false, formSent: false, guideModal: false }">
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║              NAV                 ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <header id="navbar"
+          class="fixed top-0 inset-x-0 z-50 transition-all duration-500"
+          :class="navScrolled ? 'bg-charcoal-900/95 backdrop-blur-xl border-b border-white/5 py-3' : 'py-5'"
+          x-data="{ navScrolled: false }"
+          @scroll.window="navScrolled = window.scrollY > 40">
+
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex flex-col leading-none group">
+        <span class="font-serif text-xl font-bold tracking-tight text-white group-hover:text-gold-400 transition-colors">Clearfield</span>
+        <span class="text-[10px] uppercase tracking-widest2 text-gold-500 font-medium">Advisory</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
+        <a href="#services" class="nav-link hover:text-white transition-colors">Services</a>
+        <a href="#why"      class="nav-link hover:text-white transition-colors">Why Us</a>
+        <a href="#process"  class="nav-link hover:text-white transition-colors">Process</a>
+        <a href="#guide"    class="nav-link hover:text-white transition-colors">Free Guide</a>
+        <a href="#contact"  class="nav-link hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a href="#contact" class="btn-gold px-5 py-2.5 rounded-lg text-sm">Book a Consultation</a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button class="md:hidden p-2 rounded-lg glass" @click="navOpen = !navOpen" aria-label="Menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path x-show="!navOpen" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          <path x-show="navOpen"  stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div x-show="navOpen" x-cloak x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+         class="md:hidden border-t border-white/5 bg-charcoal-900/98 px-6 py-6 flex flex-col gap-5 text-sm font-medium">
+      <a href="#services" @click="navOpen=false" class="text-white/70 hover:text-white transition-colors">Services</a>
+      <a href="#why"      @click="navOpen=false" class="text-white/70 hover:text-white transition-colors">Why Us</a>
+      <a href="#process"  @click="navOpen=false" class="text-white/70 hover:text-white transition-colors">Process</a>
+      <a href="#guide"    @click="navOpen=false" class="text-white/70 hover:text-white transition-colors">Free Guide</a>
+      <a href="#contact"  @click="navOpen=false" class="text-white/70 hover:text-white transition-colors">Contact</a>
+      <a href="#contact"  @click="navOpen=false" class="btn-gold text-center px-5 py-3 rounded-lg">Book a Consultation</a>
+    </div>
+  </header>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║              HERO                ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="hero-bg noise relative min-h-screen flex items-center justify-center px-6 pt-28 pb-20 overflow-hidden">
+
+    <!-- Grid overlay -->
+    <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(212,168,67,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,.03) 1px,transparent 1px);background-size:80px 80px"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+
+      <div class="inline-flex items-center gap-2.5 glass-gold rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-widest text-gold-400 mb-10" id="hero-badge">
+        <span class="w-1.5 h-1.5 bg-gold-400 rounded-full animate-pulse"></span>
+        Regulatory Compliance · Life Insurance Sector
+      </div>
+
+      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight mb-8" id="hero-title">
+        Compliance<br>
+        <em class="gold-text not-italic">Without</em><br>
+        Compromise.
+      </h1>
+
+      <p class="text-white/55 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12" id="hero-sub">
+        Clearfield Advisory helps independent life insurance agents and startup MGAs navigate the
+        regulatory landscape — from licensing to compliant marketing materials — with precision and confidence.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-20" id="hero-cta">
+        <a href="#contact" class="btn-gold px-8 py-4 rounded-xl text-base">Schedule a Consultation</a>
+        <a href="#guide"   class="btn-outline px-8 py-4 rounded-xl text-base">Download Free Compliance Guide</a>
+      </div>
+
+      <!-- Stat strip -->
+      <div class="grid grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden max-w-2xl mx-auto" id="hero-stats">
+        <div class="bg-charcoal-800 px-6 py-5 text-center">
+          <div class="font-serif text-3xl font-bold gold-text stat-num" data-target="350">0</div>
+          <div class="text-xs text-white/40 mt-1 uppercase tracking-widest">Agents Served</div>
+        </div>
+        <div class="bg-charcoal-800 px-6 py-5 text-center">
+          <div class="font-serif text-3xl font-bold gold-text stat-num" data-target="48">0</div>
+          <div class="text-xs text-white/40 mt-1 uppercase tracking-widest">States Covered</div>
+        </div>
+        <div class="bg-charcoal-800 px-6 py-5 text-center">
+          <div class="font-serif text-3xl font-bold text-white stat-num">100%</div>
+          <div class="text-xs text-white/40 mt-1 uppercase tracking-widest">Audit Pass Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/25" id="scroll-hint">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-gold-500/50 to-transparent"></div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║           TRUST BAR              ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <div class="border-y border-white/5 bg-charcoal-800 py-5 overflow-hidden">
+    <div class="flex gap-16 marquee-track whitespace-nowrap text-xs font-semibold uppercase tracking-widest text-white/25">
+      <span>NAIC Compliance</span><span class="text-gold-600">·</span>
+      <span>State DOI Filings</span><span class="text-gold-600">·</span>
+      <span>MGA Structuring</span><span class="text-gold-600">·</span>
+      <span>Carrier Contracting</span><span class="text-gold-600">·</span>
+      <span>E&O Readiness</span><span class="text-gold-600">·</span>
+      <span>Marketing Compliance</span><span class="text-gold-600">·</span>
+      <span>Regulatory Audits</span><span class="text-gold-600">·</span>
+      <span>Licensing Support</span><span class="text-gold-600">·</span>
+      <span>NAIC Compliance</span><span class="text-gold-600">·</span>
+      <span>State DOI Filings</span><span class="text-gold-600">·</span>
+      <span>MGA Structuring</span><span class="text-gold-600">·</span>
+      <span>Carrier Contracting</span><span class="text-gold-600">·</span>
+      <span>E&O Readiness</span><span class="text-gold-600">·</span>
+      <span>Marketing Compliance</span><span class="text-gold-600">·</span>
+      <span>Regulatory Audits</span><span class="text-gold-600">·</span>
+      <span>Licensing Support</span><span class="text-gold-600">·</span>
+    </div>
+  </div>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║            SERVICES              ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="py-32 px-6" id="services">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center mb-20 section-header">
+        <p class="text-xs font-semibold uppercase tracking-widest2 text-gold-500 mb-4">What We Do</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight mb-5">
+          End-to-End Compliance<br>Advisory Services
+        </h2>
+        <p class="text-white/50 max-w-xl mx-auto leading-relaxed">
+          Whether you're a solo agent managing renewals or a startup MGA building from the ground up,
+          Clearfield Advisory delivers the regulatory expertise you need to operate with confidence.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Service 1 -->
+        <div class="service-card rounded-2xl p-8 service-item">
+          <div class="service-icon-wrap w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6 transition-all duration-300">
+            <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-3">Compliant Sales & Marketing Materials</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            We review, draft, and certify your sales scripts, brochures, digital ads, and
+            illustrations against state and carrier guidelines — so your marketing never puts
+            your license at risk.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card rounded-2xl p-8 service-item">
+          <div class="service-icon-wrap w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6 transition-all duration-300">
+            <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-3">Regulatory Audits</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            Proactive internal compliance audits that identify gaps before regulators do.
+            We deliver a full findings report with prioritized remediation steps, giving you
+            a clear path to a clean record.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card rounded-2xl p-8 service-item">
+          <div class="service-icon-wrap w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6 transition-all duration-300">
+            <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-3">MGA Setup & Structuring</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            Launching a Managing General Agency? We guide you through the entire compliance
+            framework — entity formation, regulatory registration, contracting hierarchy,
+            and operational compliance policies.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card rounded-2xl p-8 service-item">
+          <div class="service-icon-wrap w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6 transition-all duration-300">
+            <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-3">State Licensing Support</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            Resident and non-resident licensing, CE compliance tracking, license renewals,
+            and Department of Insurance correspondence — handled accurately and on time, every time.
+          </p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card rounded-2xl p-8 service-item">
+          <div class="service-icon-wrap w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6 transition-all duration-300">
+            <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-3">Carrier Contracting Guidance</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            We decipher carrier appointment requirements, contracting hierarchies, and compliance
+            obligations — ensuring your agreements align with state law and your business model.
+          </p>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card rounded-2xl p-8 service-item">
+          <div class="service-icon-wrap w-12 h-12 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6 transition-all duration-300">
+            <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-3">Ongoing Compliance Monitoring</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            Stay ahead of regulatory changes with continuous monitoring of state bulletins, NAIC
+            model law updates, and carrier policy shifts — with real-time alerts and quarterly compliance reports.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider mx-6 md:mx-20"></div>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║             WHY US               ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="py-32 px-6" id="why">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+
+      <!-- Left: text -->
+      <div class="why-left">
+        <p class="text-xs font-semibold uppercase tracking-widest2 text-gold-500 mb-4">Why Clearfield</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
+          The Advisory That<br>
+          <span class="gold-text">Thinks Like a Regulator.</span>
+        </h2>
+        <p class="text-white/50 leading-relaxed mb-10">
+          Most compliance consultants flag issues after the fact. Clearfield Advisory embeds compliance
+          thinking into every stage of your business — from your first carrier appointment to your
+          hundredth agent onboarding — so you never operate in the dark.
+        </p>
+
+        <div class="space-y-6">
+          <div class="flex gap-4 why-item">
+            <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Life Insurance Sector Exclusive</h4>
+              <p class="text-white/45 text-sm leading-relaxed">We work only in the life insurance space, giving us deep, current expertise that generalist compliance firms simply cannot match.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 why-item">
+            <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Built for Independent Agents & MGAs</h4>
+              <p class="text-white/45 text-sm leading-relaxed">Our engagements are sized for your business — not designed for carriers or captive agencies. Practical advice, not boilerplate policies.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 why-item">
+            <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Proactive, Not Reactive</h4>
+              <p class="text-white/45 text-sm leading-relaxed">We monitor regulatory changes continuously, alerting you before they affect your business — not after a DOI inquiry lands in your inbox.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: accent block -->
+      <div class="why-right relative">
+        <div class="glass-gold rounded-3xl p-10 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500/5 rounded-full -translate-y-1/3 translate-x-1/3"></div>
+          <blockquote class="relative z-10">
+            <div class="text-gold-400 text-5xl font-serif leading-none mb-6">"</div>
+            <p class="text-white/80 text-lg leading-relaxed font-light italic mb-8">
+              Regulatory compliance isn't a checkbox — it's the foundation your entire
+              business is built on. We treat it that way, and so should you.
+            </p>
+            <footer>
+              <div class="font-semibold text-white">Clearfield Advisory</div>
+              <div class="text-gold-500 text-sm mt-1">Founding Principle</div>
+            </footer>
+          </blockquote>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="absolute -bottom-6 -left-6 glass rounded-2xl px-6 py-4 gold-border border">
+          <div class="text-2xl font-serif font-bold gold-text">48</div>
+          <div class="text-xs text-white/50 uppercase tracking-widest mt-0.5">States Covered</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider mx-6 md:mx-20"></div>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║            PROCESS               ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="py-32 px-6" id="process">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="text-center mb-20 section-header">
+        <p class="text-xs font-semibold uppercase tracking-widest2 text-gold-500 mb-4">How It Works</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight">
+          Clear Steps.<br>Certain Outcomes.
+        </h2>
+      </div>
+
+      <div class="space-y-0">
+
+        <div class="relative flex gap-8 pb-12 process-step">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full glass-gold border border-gold-600/40 flex items-center justify-center font-serif text-xl font-bold gold-text flex-shrink-0">1</div>
+            <div class="w-px flex-1 mt-3 step-line"></div>
+          </div>
+          <div class="pt-2 pb-4">
+            <h3 class="text-xl font-semibold mb-3">Compliance Discovery Call</h3>
+            <p class="text-white/45 leading-relaxed max-w-lg">
+              We start with a focused 60-minute consultation to understand your business model,
+              current compliance posture, active states, carrier relationships, and immediate risks.
+              No generic questionnaires — just a direct conversation with a compliance expert.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative flex gap-8 pb-12 process-step">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full glass-gold border border-gold-600/40 flex items-center justify-center font-serif text-xl font-bold gold-text flex-shrink-0">2</div>
+            <div class="w-px flex-1 mt-3 step-line"></div>
+          </div>
+          <div class="pt-2 pb-4">
+            <h3 class="text-xl font-semibold mb-3">Tailored Compliance Blueprint</h3>
+            <p class="text-white/45 leading-relaxed max-w-lg">
+              Within five business days, you receive a written Compliance Blueprint — a prioritized
+              roadmap of actions, risks, and recommendations specific to your situation.
+              This document becomes your compliance playbook.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative flex gap-8 process-step">
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full glass-gold border border-gold-600/40 flex items-center justify-center font-serif text-xl font-bold gold-text flex-shrink-0">3</div>
+          </div>
+          <div class="pt-2">
+            <h3 class="text-xl font-semibold mb-3">Ongoing Advisory & Monitoring</h3>
+            <p class="text-white/45 leading-relaxed max-w-lg">
+              Engage us on retainer for continuous compliance support — marketing material reviews,
+              regulatory monitoring, licensing management, and immediate access to expert guidance
+              whenever the regulatory landscape shifts.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║           LEAD MAGNET            ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="py-20 px-6 bg-charcoal-800" id="guide">
+    <div class="max-w-5xl mx-auto">
+      <div class="glass-gold rounded-3xl p-10 md:p-14 grid md:grid-cols-2 gap-10 items-center guide-section">
+
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-widest2 text-gold-500 mb-4">Free Resource</p>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold leading-tight mb-5">
+            The Independent Agent's<br>
+            <span class="gold-text">Compliance Checklist</span>
+          </h2>
+          <p class="text-white/50 leading-relaxed mb-6">
+            A practical 12-point checklist covering the most common compliance gaps we find
+            in independent life insurance practices — from marketing materials to licensing
+            to E&O documentation. Download free.
+          </p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li class="flex items-center gap-2"><span class="text-gold-400">✓</span> 12 critical compliance checkpoints</li>
+            <li class="flex items-center gap-2"><span class="text-gold-400">✓</span> State-specific licensing reminders</li>
+            <li class="flex items-center gap-2"><span class="text-gold-400">✓</span> Marketing material red flags to avoid</li>
+            <li class="flex items-center gap-2"><span class="text-gold-400">✓</span> MGA audit preparation notes</li>
+          </ul>
+        </div>
+
+        <div x-data="{ sent: false, email: '' }">
+          <div x-show="!sent" class="space-y-4">
+            <div>
+              <label class="text-xs font-medium text-white/50 uppercase tracking-widest block mb-2">Your Name</label>
+              <input type="text" placeholder="Jane Smith" class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+            </div>
+            <div>
+              <label class="text-xs font-medium text-white/50 uppercase tracking-widest block mb-2">Work Email</label>
+              <input type="email" x-model="email" placeholder="jane@youragency.com" class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+            </div>
+            <div>
+              <label class="text-xs font-medium text-white/50 uppercase tracking-widest block mb-2">I am a...</label>
+              <select class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+                <option value="" disabled selected>Select one</option>
+                <option>Independent Life Insurance Agent</option>
+                <option>Startup MGA</option>
+                <option>Established MGA</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <button @click="if(email) sent=true"
+                    class="btn-gold w-full py-4 rounded-xl text-sm mt-2">
+              Send Me the Free Checklist →
+            </button>
+            <p class="text-xs text-white/25 text-center">No spam. Unsubscribe anytime.</p>
+          </div>
+          <div x-show="sent" x-cloak x-transition class="text-center py-10">
+            <div class="w-14 h-14 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-7 h-7 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-lg mb-2">Check your inbox.</h4>
+            <p class="text-white/45 text-sm">Your compliance checklist is on its way. If you don't see it in 5 minutes, check your spam folder.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║          TESTIMONIALS            ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="py-32 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 section-header">
+        <p class="text-xs font-semibold uppercase tracking-widest2 text-gold-500 mb-4">Client Voices</p>
+        <h2 class="font-serif text-4xl font-bold">Trusted by Agents & MGAs</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-8 testimonial-item">
+          <div class="flex gap-1 mb-5">
+            <span class="text-gold-400 text-sm">★★★★★</span>
+          </div>
+          <p class="text-white/65 text-sm leading-relaxed mb-6 italic">
+            "Clearfield caught three material compliance issues in our marketing collateral before
+            our state DOI review. Their audit saved us from what could have been a serious licensing problem."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 font-bold text-sm">M</div>
+            <div>
+              <div class="text-sm font-semibold">Marcus T.</div>
+              <div class="text-xs text-white/35">Independent Agent · Texas</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-8 testimonial-item">
+          <div class="flex gap-1 mb-5">
+            <span class="text-gold-400 text-sm">★★★★★</span>
+          </div>
+          <p class="text-white/65 text-sm leading-relaxed mb-6 italic">
+            "We launched our MGA in seven states in under four months. Clearfield Advisory handled
+            every filing, appointment, and policy document. We couldn't have done it without them."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 font-bold text-sm">R</div>
+            <div>
+              <div class="text-sm font-semibold">Rachel D.</div>
+              <div class="text-xs text-white/35">CEO · Startup MGA · Florida</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-8 testimonial-item">
+          <div class="flex gap-1 mb-5">
+            <span class="text-gold-400 text-sm">★★★★★</span>
+          </div>
+          <p class="text-white/65 text-sm leading-relaxed mb-6 italic">
+            "The ongoing monitoring retainer is worth every dollar. I get a quarterly report and
+            real-time alerts when something changes that affects my book. It's like having an
+            in-house compliance officer."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 font-bold text-sm">J</div>
+            <div>
+              <div class="text-sm font-semibold">James O.</div>
+              <div class="text-xs text-white/35">Independent Agent · Illinois</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider mx-6 md:mx-20"></div>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║           CONTACT FORM           ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="py-32 px-6" id="contact">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20">
+
+      <!-- Left -->
+      <div class="contact-left">
+        <p class="text-xs font-semibold uppercase tracking-widest2 text-gold-500 mb-4">Get in Touch</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight mb-6">
+          Let's Talk<br>
+          <span class="gold-text">Compliance.</span>
+        </h2>
+        <p class="text-white/50 leading-relaxed mb-10">
+          Whether you need a one-time audit or a long-term compliance partner, we'd like to
+          understand your situation first. Book a no-obligation 30-minute consultation and
+          find out exactly what Clearfield Advisory can do for your business.
+        </p>
+
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 contact-detail">
+            <div class="w-10 h-10 rounded-xl glass-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-xs text-white/35 uppercase tracking-widest mb-0.5">Email</div>
+              <a href="mailto:hello@clearfieldadvisory.com" class="text-white/80 hover:text-gold-400 transition-colors text-sm">hello@clearfieldadvisory.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 contact-detail">
+            <div class="w-10 h-10 rounded-xl glass-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-xs text-white/35 uppercase tracking-widest mb-0.5">Response Time</div>
+              <span class="text-white/80 text-sm">Within 1 business day</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-right" x-data="{ sent: false }">
+        <div x-show="!sent" class="glass rounded-2xl p-8 space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="text-xs font-medium text-white/40 uppercase tracking-widest block mb-2">First Name</label>
+              <input type="text" placeholder="Jane" class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+            </div>
+            <div>
+              <label class="text-xs font-medium text-white/40 uppercase tracking-widest block mb-2">Last Name</label>
+              <input type="text" placeholder="Smith" class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-white/40 uppercase tracking-widest block mb-2">Work Email</label>
+            <input type="email" placeholder="jane@youragency.com" class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+          </div>
+          <div>
+            <label class="text-xs font-medium text-white/40 uppercase tracking-widest block mb-2">I am a...</label>
+            <select class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+              <option value="" disabled selected>Select your role</option>
+              <option>Independent Life Insurance Agent</option>
+              <option>Startup MGA Founder</option>
+              <option>Established MGA</option>
+              <option>Other Insurance Professional</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-white/40 uppercase tracking-widest block mb-2">Primary Need</label>
+            <select class="form-input w-full rounded-xl px-4 py-3.5 text-sm">
+              <option value="" disabled selected>What do you need help with?</option>
+              <option>Compliant Marketing Materials Review</option>
+              <option>Regulatory Audit</option>
+              <option>MGA Setup & Structuring</option>
+              <option>State Licensing Support</option>
+              <option>Carrier Contracting</option>
+              <option>Ongoing Compliance Monitoring</option>
+              <option>Not sure — need guidance</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-white/40 uppercase tracking-widest block mb-2">Tell Us More</label>
+            <textarea rows="4" placeholder="Briefly describe your compliance situation or question..." class="form-input w-full rounded-xl px-4 py-3.5 text-sm resize-none"></textarea>
+          </div>
+          <button @click="sent = true" class="btn-gold w-full py-4 rounded-xl text-sm font-semibold">
+            Request a Consultation →
+          </button>
+          <p class="text-xs text-white/25 text-center">All information is kept strictly confidential.</p>
+        </div>
+
+        <!-- Success state -->
+        <div x-show="sent" x-cloak x-transition class="glass rounded-2xl p-10 text-center">
+          <div class="w-16 h-16 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-2xl font-bold mb-3">Message Received.</h3>
+          <p class="text-white/50 leading-relaxed">Thank you for reaching out to Clearfield Advisory. A member of our team will be in touch within one business day to schedule your consultation.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║             FOOTER               ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <footer class="border-t border-white/5 bg-charcoal-950">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="md:col-span-2">
+          <div class="flex flex-col leading-none mb-5">
+            <span class="font-serif text-2xl font-bold tracking-tight">Clearfield</span>
+            <span class="text-[11px] uppercase tracking-widest2 text-gold-500 font-medium mt-1">Advisory</span>
+          </div>
+          <p class="text-white/35 text-sm leading-relaxed max-w-xs">
+            Regulatory compliance consulting for independent life insurance agents and startup MGAs.
+            Precision, clarity, and confidence in every engagement.
+          </p>
+        </div>
+        <div>
+          <h5 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-5">Services</h5>
+          <ul class="space-y-3 text-sm text-white/45">
+            <li><a href="#services" class="hover:text-gold-400 transition-colors">Sales & Marketing Review</a></li>
+            <li><a href="#services" class="hover:text-gold-400 transition-colors">Regulatory Audits</a></li>
+            <li><a href="#services" class="hover:text-gold-400 transition-colors">MGA Setup</a></li>
+            <li><a href="#services" class="hover:text-gold-400 transition-colors">State Licensing</a></li>
+            <li><a href="#services" class="hover:text-gold-400 transition-colors">Carrier Contracting</a></li>
+            <li><a href="#services" class="hover:text-gold-400 transition-colors">Compliance Monitoring</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-5">Company</h5>
+          <ul class="space-y-3 text-sm text-white/45">
+            <li><a href="#why"     class="hover:text-gold-400 transition-colors">Why Clearfield</a></li>
+            <li><a href="#process" class="hover:text-gold-400 transition-colors">Our Process</a></li>
+            <li><a href="#guide"   class="hover:text-gold-400 transition-colors">Free Checklist</a></li>
+            <li><a href="#contact" class="hover:text-gold-400 transition-colors">Contact</a></li>
+            <li><a href="mailto:hello@clearfieldadvisory.com" class="hover:text-gold-400 transition-colors">hello@clearfieldadvisory.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gold-line border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/25">
+        <span>© 2024 Clearfield Advisory. All rights reserved.</span>
+        <span>Compliance consulting does not constitute legal advice. Consult qualified legal counsel for your jurisdiction.</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════ -->
+  <!--               SCRIPTS               -->
+  <!-- ════════════════════════════════════ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // ── Lenis smooth scroll ──────────────────────
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    // Wire Lenis to GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(time => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    // ── Register GSAP plugins ────────────────────
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Hero entrance ───────────────────────────
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('#hero-badge',  { y: 24, opacity: 0, duration: 0.7 })
+      .from('#hero-title',  { y: 50, opacity: 0, duration: 1,   stagger: 0.05 }, '-=0.4')
+      .from('#hero-sub',    { y: 30, opacity: 0, duration: 0.8 }, '-=0.6')
+      .from('#hero-cta',    { y: 20, opacity: 0, duration: 0.6 }, '-=0.5')
+      .from('#hero-stats',  { y: 20, opacity: 0, duration: 0.7, scale: 0.97 }, '-=0.4')
+      .from('#scroll-hint', { opacity: 0, duration: 0.6 }, '-=0.2');
+
+    // ── Scroll hint pulse ───────────────────────
+    gsap.to('#scroll-hint', { opacity: 0.15, duration: 1.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    // ── Stat counters ───────────────────────────
+    document.querySelectorAll('[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = target > 100 ? '+' : '+';
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%', once: true,
+        onEnter: () => {
+          gsap.to({ v: 0 }, {
+            v: target, duration: 2.2, ease: 'power2.out',
+            onUpdate: function() {
+              el.textContent = Math.round(this.targets()[0].v).toLocaleString() + suffix;
+            }
+          });
+        }
+      });
+    });
+
+    // ── Section headers ─────────────────────────
+    gsap.utils.toArray('.section-header').forEach(el => {
+      gsap.from(el, {
+        y: 40, opacity: 0, duration: 0.9,
+        scrollTrigger: { trigger: el, start: 'top 82%', once: true }
+      });
+    });
+
+    // ── Service cards ───────────────────────────
+    gsap.utils.toArray('.service-item').forEach((card, i) => {
+      gsap.from(card, {
+        y: 50, opacity: 0, duration: 0.7,
+        delay: (i % 3) * 0.1,
+        scrollTrigger: { trigger: card, start: 'top 88%', once: true }
+      });
+    });
+
+    // ── Why section ──────────────────────────────
+    gsap.from('.why-left', {
+      x: -50, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '.why-left', start: 'top 80%', once: true }
+    });
+    gsap.from('.why-right', {
+      x: 50, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '.why-right', start: 'top 80%', once: true }
+    });
+    gsap.utils.toArray('.why-item').forEach((el, i) => {
+      gsap.from(el, {
+        x: -30, opacity: 0, duration: 0.6, delay: i * 0.15,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      });
+    });
+
+    // ── Process steps ────────────────────────────
+    gsap.utils.toArray('.process-step').forEach((el, i) => {
+      gsap.from(el, {
+        y: 40, opacity: 0, duration: 0.7, delay: i * 0.15,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      });
+    });
+
+    // ── Guide section ────────────────────────────
+    gsap.from('.guide-section', {
+      y: 40, opacity: 0, duration: 0.9, scale: 0.98,
+      scrollTrigger: { trigger: '.guide-section', start: 'top 82%', once: true }
+    });
+
+    // ── Testimonials ─────────────────────────────
+    gsap.utils.toArray('.testimonial-item').forEach((el, i) => {
+      gsap.from(el, {
+        y: 40, opacity: 0, duration: 0.7, delay: i * 0.12,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+
+    // ── Contact section ──────────────────────────
+    gsap.from('.contact-left', {
+      x: -40, opacity: 0, duration: 0.9,
+      scrollTrigger: { trigger: '.contact-left', start: 'top 80%', once: true }
+    });
+    gsap.from('.contact-right', {
+      x: 40, opacity: 0, duration: 0.9,
+      scrollTrigger: { trigger: '.contact-right', start: 'top 80%', once: true }
+    });
+    gsap.utils.toArray('.contact-detail').forEach((el, i) => {
+      gsap.from(el, {
+        x: -20, opacity: 0, duration: 0.5, delay: i * 0.12,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+
+    // ── Subtle parallax on hero title ────────────
+    gsap.to('#hero-title', {
+      y: -60, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: '40% top', scrub: true }
+    });
+
+  });
+  </script>
+
+</body>
+</html>
